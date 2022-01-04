@@ -1,0 +1,2 @@
+--Declare Kullanýmý
+--Bazen deðiþken tanýmlayýp o deðiþkenle iþlem yapmamýz gerekir ozaman declare kullanýrýz
