@@ -1,0 +1,10 @@
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\bin\Debug\VeritabaniFinal.exe.config
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\bin\Debug\VeritabaniFinal.exe
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\bin\Debug\VeritabaniFinal.pdb
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.csprojAssemblyReference.cache
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.Form1.resources
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.Properties.Resources.resources
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.csproj.GenerateResource.cache
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.csproj.CoreCompileInputs.cache
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.exe
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.pdb
