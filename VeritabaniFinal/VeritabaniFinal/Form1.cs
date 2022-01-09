@@ -28,10 +28,21 @@ namespace VeritabaniFinal
             this.urunlerTableAdapter.Fill(this.vizeSinaviDataSet.Urunler);
 
         }
-        public void listele()
+        public void urunlerTblListele()
         {
             baglanti.Open(); 
-             String Sorgu = "select UrunId,UrunAd,UrunAdet,KategoriAd,UrunMarka,UrunFiyat from Urunler inner join Kategoriler on Urunler.UrunKategori = Kategoriler.KategoriId "; 
+            String Sorgu = "select UrunId,UrunAd,UrunAdet,KategoriAd,UrunMarka,UrunFiyat from Urunler inner join Kategoriler on Urunler.UrunKategori = Kategoriler.KategoriId "; 
+            SqlDataAdapter listele = new SqlDataAdapter(Sorgu, baglanti);
+            DataTable ds = new DataTable();
+            listele.Fill(ds);
+            dataGridView1.DataSource = ds;
+            baglanti.Close();
+        }
+
+        public void satislarTblListele()
+        {
+            baglanti.Open();
+            String Sorgu = "select SatisId,MusteriAd+' '+MusteriSoyad as musteriAdıSoyadı, UrunAd,Fiyat ,PersonelName as KasiyerAdı from Satislar inner Join Urunler on Satislar.Urun = Urunler.UrunId inner join Musteriler on Satislar.Musteri = Musteriler.MusteriId inner join Personel on Satislar.Personel = Personel.PersonelId";
             SqlDataAdapter listele = new SqlDataAdapter(Sorgu, baglanti);
             DataTable ds = new DataTable();
             listele.Fill(ds);
@@ -70,7 +81,7 @@ namespace VeritabaniFinal
                 kayitEkle.ExecuteNonQuery();
                 baglanti.Close();
                 MessageBox.Show("Record inserted succesfully");
-                listele();
+                urunlerTblListele();
                 clear();
 
             }
@@ -85,7 +96,7 @@ namespace VeritabaniFinal
            
             komutSil.ExecuteNonQuery();            
             baglanti.Close();
-            listele();
+            urunlerTblListele();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -102,7 +113,7 @@ namespace VeritabaniFinal
             baglanti.Close();
            
             MessageBox.Show("Record Updated succesfully");
-            listele();
+            urunlerTblListele();
             clear();
         }
 
@@ -118,11 +129,13 @@ namespace VeritabaniFinal
 
         private void btnListele_Click(object sender, EventArgs e)
         {
-            listele();
+            urunlerTblListele();
+            label1.Text = "URUNLER";
         }
 
         private void button1_Click(object sender, EventArgs e)//SEARCH BUTTON
-        {            
+        {
+            //urünler tablosunda arama yapar
             String sorgu = "select * from  Urunler  where UrunAd like '%"+ textBox5.Text+"%'";
             
             SqlDataAdapter komutArama = new SqlDataAdapter(sorgu, baglanti);
@@ -135,6 +148,12 @@ namespace VeritabaniFinal
 
            
             
+        }
+
+        private void btnSatislar_Click(object sender, EventArgs e)
+        {
+            satislarTblListele();
+            label1.Text = "SATIŞLAR";
         }
     }
 }
