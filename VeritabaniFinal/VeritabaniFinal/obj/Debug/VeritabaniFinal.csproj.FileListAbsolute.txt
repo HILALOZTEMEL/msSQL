@@ -8,3 +8,4 @@ C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFin
 C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.csproj.CoreCompileInputs.cache
 C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.exe
 C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.pdb
+C:\Users\pc\source\repos\VeritabaniFinal\VeritabaniFinal\obj\Debug\VeritabaniFinal.customerTransaction.resources

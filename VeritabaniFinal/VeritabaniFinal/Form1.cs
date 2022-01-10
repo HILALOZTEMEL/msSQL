@@ -76,7 +76,7 @@ namespace VeritabaniFinal
                 kayitEkle.Parameters.AddWithValue("@p2", Convert.ToInt32(textBox2.Text) );
                 kayitEkle.Parameters.AddWithValue("@p3", Convert.ToByte(comboBox1.SelectedIndex+1));
                 kayitEkle.Parameters.AddWithValue("@p4", textBox3.Text);
-                kayitEkle.Parameters.AddWithValue("@p5", Convert.ToInt32(textBox4.Text));
+                kayitEkle.Parameters.AddWithValue("@p5", Convert.ToDecimal(textBox4.Text));
 
                 kayitEkle.ExecuteNonQuery();
                 baglanti.Close();
@@ -154,6 +154,13 @@ namespace VeritabaniFinal
         {
             satislarTblListele();
             label1.Text = "SATIŞLAR";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //müsteri formuna geçiş
+            customerTransaction gecis = new customerTransaction();
+            gecis.Show();
         }
     }
 }
