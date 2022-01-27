@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.urunlerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vizeSinaviDataSet = new VeritabaniFinal.VizeSinaviDataSet();
             this.urunlerTableAdapter = new VeritabaniFinal.VizeSinaviDataSetTableAdapters.UrunlerTableAdapter();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnSatislar = new System.Windows.Forms.Button();
             this.btnListele = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -45,6 +46,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblGBP = new System.Windows.Forms.Label();
+            this.lblEuro = new System.Windows.Forms.Label();
+            this.lblDolar = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -68,7 +73,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.urunlerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vizeSinaviDataSet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -120,6 +124,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 776);
             this.panel1.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::VeritabaniFinal.Properties.Resources.es;
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.Location = new System.Drawing.Point(15, 502);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(166, 52);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "CUSTOMER TRANSACTİON";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnSatislar
             // 
@@ -197,11 +213,51 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BackgroundImage = global::VeritabaniFinal.Properties.Resources.s;
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.lblGBP);
+            this.panel3.Controls.Add(this.lblEuro);
+            this.panel3.Controls.Add(this.lblDolar);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Location = new System.Drawing.Point(247, 24);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(861, 69);
             this.panel3.TabIndex = 5;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(645, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(228, 17);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Dolar:            EURO:         POUND:";
+            // 
+            // lblGBP
+            // 
+            this.lblGBP.AutoSize = true;
+            this.lblGBP.Location = new System.Drawing.Point(781, 31);
+            this.lblGBP.Name = "lblGBP";
+            this.lblGBP.Size = new System.Drawing.Size(37, 17);
+            this.lblGBP.TabIndex = 16;
+            this.lblGBP.Text = "GBP";
+            // 
+            // lblEuro
+            // 
+            this.lblEuro.AutoSize = true;
+            this.lblEuro.Location = new System.Drawing.Point(715, 31);
+            this.lblEuro.Name = "lblEuro";
+            this.lblEuro.Size = new System.Drawing.Size(60, 17);
+            this.lblEuro.TabIndex = 15;
+            this.lblEuro.Text = "EuroKur";
+            // 
+            // lblDolar
+            // 
+            this.lblDolar.AutoSize = true;
+            this.lblDolar.Location = new System.Drawing.Point(645, 31);
+            this.lblDolar.Name = "lblDolar";
+            this.lblDolar.Size = new System.Drawing.Size(64, 17);
+            this.lblDolar.TabIndex = 1;
+            this.lblDolar.Text = "DolarKur";
             // 
             // label1
             // 
@@ -359,34 +415,34 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.Location = new System.Drawing.Point(247, 124);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(861, 300);
@@ -433,18 +489,6 @@
             this.label9.Size = new System.Drawing.Size(124, 20);
             this.label9.TabIndex = 8;
             this.label9.Text = "ÜRÜN ARAMA";
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImage = global::VeritabaniFinal.Properties.Resources.es;
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(15, 502);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(166, 52);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "CUSTOMER TRANSACTİON";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -519,6 +563,10 @@
         private System.Windows.Forms.Button btnSatislar;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblDolar;
+        private System.Windows.Forms.Label lblEuro;
+        private System.Windows.Forms.Label lblGBP;
+        private System.Windows.Forms.Label label10;
     }
 }
 

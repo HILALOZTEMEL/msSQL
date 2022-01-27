@@ -1,13 +1,20 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+//kullandığımız kütüphaneler
+using Newtonsoft.Json;
+
 
 namespace VeritabaniFinal
 {
@@ -16,10 +23,62 @@ namespace VeritabaniFinal
         public Form1()
         {
             InitializeComponent();
+            DovizGoster();
         }
 
         SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-SJCLO2R\\SQLEXPRESS;Initial Catalog=VizeSinavi;Integrated Security=True");
         int ID;
+        decimal dolar;
+        WebClient c = new WebClient(); //Json API'lerin yüklenmesini sağlayan sınıfımız
+
+        //okunan JSON verilerin yüklendiği sınıfımız
+        public class jsonData
+        {
+            public string buying { get; set; }
+            public string selling { get; set; }
+
+            public string latest { get; set; }
+
+            public string change_rate { get; set; }
+        }
+
+       /* public void DovizGoster()
+        {
+            string doviz = c.DownloadString("https://kur.doviz.com/serbest-piyasa/amerikan-dolari");
+            JArray dovizDizi = JArray.Parse(doviz);
+            jsonData dolarNesne = JsonConvert.DeserializeObject<jsonData>(dovizDizi[0].ToString());
+            jsonData euroNesne = JsonConvert.DeserializeObject<jsonData>(dovizDizi[1].ToString());
+            lblDolar.Text = Math.Round(Decimal.Parse(dolarNesne.buying.Replace(".", ",")), 4).ToString();
+            //lblDolarOran.Text = "%" + Math.Round(Decimal.Parse(dolarNesne.change_rate.Replace(".", ",")), 4).ToString();
+            decimal dolarOran = Math.Round(Decimal.Parse(dolarNesne.change_rate.Replace(".", ",")), 4);
+         
+
+            //decimal euroOran = Math.Round(Decimal.Parse(euroNesne.change_rate.Replace(".", ",")), 4);
+          
+           // lblEuro.Text = Math.Round(Decimal.Parse(euroNesne.buying.Replace(".", ",")), 4).ToString();
+           // lblEuroOran.Text = "%" + Math.Round(Decimal.Parse(euroNesne.change_rate.Replace(".", ",")), 4).ToString();
+        }*/
+
+        public void DovizGoster()
+       {
+           String bugun = "http://www.tcmb.gov.tr/kurlar/today.xml";
+           var xmldoc = new XmlDocument();
+
+           xmldoc.Load(bugun);
+           string USD = xmldoc.SelectSingleNode("Tarih_Date/Currency [@Kod='USD']/BanknoteSelling").InnerXml;
+           lblDolar.Text = string.Format(USD);
+           dolar = Convert.ToDecimal(lblDolar.Text);
+           dolar = dolar / 10000;
+
+
+           string EURO = xmldoc.SelectSingleNode("Tarih_Date/Currency[@Kod='EUR']/BanknoteBuying").InnerXml;
+           lblEuro.Text = string.Format(EURO);
+
+           string POUND = xmldoc.SelectSingleNode("Tarih_Date/Currency[@Kod='GBP']/BanknoteBuying").InnerXml;
+           lblGBP.Text = string.Format(POUND);
+
+       }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: Bu kod satırı 'vizeSinaviDataSet1.Kategoriler' tablosuna veri yükler. Bunu gerektiği şekilde taşıyabilir, veya kaldırabilirsiniz.
@@ -28,22 +87,31 @@ namespace VeritabaniFinal
             this.urunlerTableAdapter.Fill(this.vizeSinaviDataSet.Urunler);
 
         }
+      
         public void urunlerTblListele()
         {
-            baglanti.Open(); 
-            String Sorgu = "select UrunId,UrunAd,UrunAdet,KategoriAd,UrunMarka,UrunFiyat from Urunler inner join Kategoriler on Urunler.UrunKategori = Kategoriler.KategoriId "; 
+            
+            
+
+            baglanti.Open();
+
+            //String Sorgu = "DECLARE @d Decimal(8,2) SET @d=" + dolar + " select UrunId,UrunAd,UrunAdet,KategoriAd,UrunMarka,UrunFiyat*@d as fiyat from Urunler inner join Kategoriler on Urunler.UrunKategori = Kategoriler.KategoriId "; 
+            String Sorgu= " Select UrunId,UrunAd,UrunAdet,KategoriAd,UrunMarka,UrunFiyat as fiyat from Urunler inner join Kategoriler on Urunler.UrunKategori = Kategoriler.KategoriId ";
             SqlDataAdapter listele = new SqlDataAdapter(Sorgu, baglanti);
             DataTable ds = new DataTable();
             listele.Fill(ds);
-            dataGridView1.DataSource = ds;
             baglanti.Close();
+            dataGridView1.DataSource = ds;
+           
         }
 
         public void satislarTblListele()
         {
+            
             baglanti.Open();
             String Sorgu = "select SatisId,MusteriAd+' '+MusteriSoyad as musteriAdıSoyadı, UrunAd,Fiyat ,PersonelName as KasiyerAdı from Satislar inner Join Urunler on Satislar.Urun = Urunler.UrunId inner join Musteriler on Satislar.Musteri = Musteriler.MusteriId inner join Personel on Satislar.Personel = Personel.PersonelId";
             SqlDataAdapter listele = new SqlDataAdapter(Sorgu, baglanti);
+            
             DataTable ds = new DataTable();
             listele.Fill(ds);
             dataGridView1.DataSource = ds;
@@ -131,6 +199,8 @@ namespace VeritabaniFinal
         {
             urunlerTblListele();
             label1.Text = "URUNLER";
+                      
+            
         }
 
         private void button1_Click(object sender, EventArgs e)//SEARCH BUTTON
@@ -162,5 +232,7 @@ namespace VeritabaniFinal
             customerTransaction gecis = new customerTransaction();
             gecis.Show();
         }
+
+       
     }
 }
